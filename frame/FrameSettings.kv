@@ -1,0 +1,23 @@
+#:kivy 1.11.0
+
+<FrameSettings>: 
+  orientation: "vertical"
+
+  TextInput:
+    text: root.wifi_ssid
+    keyboard: None
+    size_hint_y: .2
+
+  TextInput:
+    text: root.wifi_password
+    password: True
+    keyboard: None
+    size_hint_y: .2
+
+  Button:
+    text: "Save"
+    size_hint_y: .2
+    on_release: root.do_save()
+
+  Label:
+    text: ""

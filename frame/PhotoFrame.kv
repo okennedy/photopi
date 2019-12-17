@@ -1,0 +1,48 @@
+#:kivy 1.11.0
+
+<PhotoFrame>:
+    Button:
+        width: root.width
+        height: root.height
+        on_release: root.toggle_controls()
+
+    AsyncImage:
+        id: display
+        source: root.images[root.index]
+        height: root.height
+        width: root.width
+
+    ImageButton:
+        visible: root.show_controls
+        width: 100 if self.visible else 0
+        height: self.width
+        x: 5
+        y: root.height / 2 - self.width / 2
+        source: "icons/left.png"        
+        on_release: root.step_forward()
+
+    ImageButton:
+        visible: root.show_controls
+        width: 100 if self.visible else 0
+        height: self.width
+        x: root.width-self.width-5
+        y: root.height / 2 - self.width / 2
+        source: "icons/right.png"        
+        on_release: root.step_backward()
+
+    ImageButton:
+        visible: root.show_controls or root.show_settings
+        width: 100 if self.visible else 0
+        height: self.width
+        x: root.width / 2 - self.width / 2
+        y: 0
+        source: "icons/menu.png"
+        on_release: root.toggle_settings()
+
+    FrameSettings:
+        visible: root.show_settings
+        width: root.width if self.visible else 0
+        height: root.height if self.visible else 0
+        x: 0
+        y: 0
+        on_save: root.hide_ui()
