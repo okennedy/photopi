@@ -44,6 +44,6 @@
         visible: root.show_settings
         width: root.width if self.visible else 0
         height: root.height if self.visible else 0
-        x: 0
+        x: 0 if self.visible else -500
         y: 0
         on_save: root.hide_ui()
