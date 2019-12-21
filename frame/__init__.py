@@ -5,6 +5,7 @@ from kivy.uix.behaviors.button import ButtonBehavior
 from kivy.properties import BooleanProperty, ListProperty, NumericProperty
 from glob import glob
 from frame.settings import FrameSettings
+from random import shuffle
 
 class ImageButton(ButtonBehavior, Image):
   pass
@@ -47,4 +48,6 @@ class PhotoFrame(Widget):
 
   def refresh_images(self, event):
     self.index = 0
-    self.images = glob("images/**.jpg")
+    images = glob("images/*.jpg") + glob("images/**/*.jpg")
+    shuffle(images)
+    self.images = images

@@ -6,4 +6,4 @@ sudo apt install -y \
    gstreamer1.0-{omx,alsa} python-dev libmtdev-dev \
    xclip xsel libjpeg-dev python3 python3-pip
 
-sudo pip3 -r requirements.txt
+sudo pip3 -r ../requirements.txt
