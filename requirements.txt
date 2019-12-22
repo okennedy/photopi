@@ -1,2 +1,3 @@
 kivy>1.11
 requests
+wpa_supplicant

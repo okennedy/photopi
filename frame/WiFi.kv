@@ -1,0 +1,113 @@
+#:kivy 1.11.0
+
+<WiFiSettings>:
+  brightness: 0.1
+  orientation: 'vertical'
+  new_network_ssid: ssid_entry
+  new_network_password: password_entry
+
+  canvas.before:
+    Color:
+      rgba: self.brightness, self.brightness, self.brightness, 1
+    Rectangle:
+      pos: self.pos
+      size: self.size
+
+  GridLayout:
+    size_hint_y: 0.12
+    cols: 2
+
+    Label:
+      size_hint_x: 0.3
+      text: "Network Name:   "
+      halign: "right"
+      valign: "middle"
+      text_size: self.size
+
+    TextInput:
+      id: ssid_entry
+
+    Label:
+      size_hint_x: 0.3
+      text: "Password:   "
+      halign: "right"
+      valign: "middle"
+      text_size: self.size
+
+    TextInput:
+#      password: True
+      id: password_entry
+
+  Button:
+    size_hint_x: 1
+    text: "Add a Network"
+    size_hint_y: 0.08
+    on_press: root.handle_connect()
+
+  Label:
+    size_hint_y: 0.15
+    text: "Available Networks"
+    halign: "center"
+    valign: "bottom"
+    text_size: self.size
+    padding_y: 10
+    underline: True
+    font_size: 20
+
+  WiFiNetworkList:
+    size_hint_y: 0.55
+    connected: root.active_connection.get_properties()['ssid'] if root.active_connection is not None else None
+    data: [{ **net.get_properties(), "network":net, "connected":net.get_properties()['ssid'] == self.connected } for net in root.networks]
+
+  Button:
+    size_hint_y: 0.1
+    text: "Close"
+    on_press: root.handle_done()
+
+<WiFiNetworkList>:
+  viewclass: 'WiFiNetwork'
+
+  RecycleBoxLayout:
+    default_size: None, dp(56)
+    default_size_hint: 1, None
+    size_hint_y: None
+    height: self.minimum_height
+    orientation: 'vertical'
+
+<WiFiNetwork>:
+  orientation: 'horizontal'
+  delete_size: 0.1
+
+  canvas.before:
+    Color:
+      rgba: 0.2, 0.8, 0.4, 0.6 if self.connected else 0
+    RoundedRectangle:
+      pos: self.pos[0]+2, self.pos[1]+2
+      size: self.size[0]-4, self.size[1]-4
+      radius: [(5, 5)]
+
+  Label:
+    width: root.width
+    height: root.height
+    text: root.ssid if not root.connected else "Connected: {}".format(root.ssid)
+    bold: True
+    font_size: 20
+    color: 1,1,1
+    alpha: 1
+
+#  Button:
+#    canvas.before:
+#      Color:
+#        rgba: 0.8, 0.2, 0.2, 0.9
+#      RoundedRectangle:
+#        pos: self.pos[0]+2, self.pos[1]+2
+#        size: self.size[0]-4, self.size[1]-4
+#        radius: [(5,5)]
+#
+#    width: root.width
+#    height: root.height
+#    text: "X"
+#    bold: True
+#    font_size: 32
+#    size_hint_x: root.delete_size
+#    on_press: root.do_deleteasdf()
