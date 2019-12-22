@@ -20,7 +20,7 @@ def fetch_files():
       print("No config file, skipping download")
       return False
     index = requests.get(
-      "{}/index.html".format(cfg["url"]), 
+      "{}/index.txt".format(cfg["url"]), 
       auth=(cfg['user'], cfg['pass'])
     )
     for file in index.text.rstrip().split('\n'):

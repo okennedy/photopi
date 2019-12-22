@@ -34,11 +34,17 @@ class WiFiSettings(BoxLayout):
     self.driver = WpaSupplicantDriver(self.reactor)
     self.supplicant = self.driver.connect()
     self.interface = Interface(self.supplicant.get_interfaces()[0], self.supplicant._conn, self.reactor)
-    self.active_connection = self.interface.get_current_network()
-    print(self.active_connection)
-    self.networks = self.interface.get_networks()
-    print(self.networks)
     self.register_event_type("on_done")
+    self.refresh_networks()
+    Clock.schedule_interval(self.refresh_networks, 60*2)
+
+  def refresh_networks(self, event = None):
+    try:
+      self.active_connection = self.interface.get_current_network()
+      self.networks = self.interface.get_networks()
+    except e as Exception:
+      print("Error refreshing networks: {}".format(e))
+
 
   def handle_connect(self):
     conf = {
