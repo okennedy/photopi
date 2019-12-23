@@ -71,15 +71,3 @@ class WPASupplicant:
       if(re.match("^[a-f0-9]{2}:[a-f0-9]{2}:[a-f0-9]{2}:[a-f0-9]{2}:[a-f0-9]{2}:[a-f0-9]{2}", line)):
         net = Network(*line.split("\t"))
         self.networks[net.ssid] = net
-
-# supplicant = WPASupplicant()
-#print("READY")
-#supplicant.scan(5)
-#print("SCANNED")
-#for net in supplicant.networks:
-#  print("{}".format(net))
-# supplicant.write_config("Minas Tirith", "Dial46?feign")
-# sleep(3)
-
-
-

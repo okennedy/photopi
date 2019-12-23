@@ -10,7 +10,6 @@ from frame.WiFi import WiFiSettings
 
 class PhotoFrameApp(App):
   def build(self):
-#    photo = WiFiSettings()
     photo = PhotoFrame()
     photo.refresh_images(None)
     Clock.schedule_interval(photo.step_forward, 60.0)
