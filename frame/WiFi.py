@@ -51,13 +51,10 @@ class WiFiSettings(BoxLayout):
           "network" : net,
           "ssid" : net.ssid
         }
-        for net in supplicant.networks:
+        for net in supplicant.networks
       ])
     except e as Exception:
       print("Error refreshing networks: {}".format(e))
-
-
-
 
   def handle_connect(self):
     conf = {
