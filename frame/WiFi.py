@@ -46,6 +46,7 @@ class WiFiSettings(BoxLayout):
 
   def finish_reload(self, event = None):
     try:
+      print(self.supplicant.networks)
       print([
         { 
           "network" : net,
