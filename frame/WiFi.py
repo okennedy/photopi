@@ -33,15 +33,15 @@ class WiFiSettings(BoxLayout):
     try:
       self.supplicant.command("scan")
       Clock.schedule_once(self.reload_networks, 10)
-    except e as Exception:
+    except Exception as e:
       print("Error refreshing networks: {}".format(e))
 
 
   def reload_networks(self, event = None):
     try:
-      self.command("scan_results")
+      self.supplicant.command("scan_results")
       Clock.schedule_once(self.finish_reload, 1)
-    except e as Exception:
+    except Exception as e:
       print("Error refreshing networks: {}".format(e))
 
   def finish_reload(self, event = None):
@@ -53,7 +53,7 @@ class WiFiSettings(BoxLayout):
         }
         for net in supplicant.networks
       ])
-    except e as Exception:
+    except Exception as e:
       print("Error refreshing networks: {}".format(e))
 
   def handle_connect(self):
