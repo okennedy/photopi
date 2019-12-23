@@ -19,7 +19,7 @@ class Network:
     return "{} @ {}dB ({}; {})".format(self.ssid, self.level, self.mac, self.flags)
 
 class WPASupplicant:
-  def __init__(self):
+  def __init__(self, interface = "wlan0"):
     self.cli = Popen(
       ["/sbin/wpa_cli"],
       # bufsize = 1,
@@ -33,6 +33,7 @@ class WPASupplicant:
         break
     self.listener = Thread(target = self.listen, daemon = True)
     self.listener.start()
+    self.command("interface {}".format(interface))
 
   def command(self, command):
     self.cli.stdin.write("{}\n".format(command).encode())
