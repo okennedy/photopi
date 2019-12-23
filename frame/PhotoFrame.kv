@@ -6,7 +6,7 @@
         height: root.height
         on_release: root.toggle_controls()
 
-    AsyncImage:
+    Image:
         id: display
         source: root.images[root.index]
         height: root.height
@@ -32,7 +32,7 @@
         on_release: root.step_forward()
 
     ImageButton:
-        visible: root.show_controls or root.show_settings
+        visible: root.show_controls
         width: 100 if self.visible else 0
         height: self.width
         x: root.width / 2 - self.width / 2

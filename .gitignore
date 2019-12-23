@@ -1,3 +1,6 @@
 *.pyc
 images
 *.pyc
+.kivy
+__pycache__
+.wpa_cli_history

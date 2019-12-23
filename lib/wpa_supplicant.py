@@ -71,4 +71,4 @@ class WPASupplicant:
       print("---> {}".format(line))
       if(re.match("^[a-f0-9]{2}:[a-f0-9]{2}:[a-f0-9]{2}:[a-f0-9]{2}:[a-f0-9]{2}:[a-f0-9]{2}", line)):
         net = Network(*line.split("\t"))
-        self.networks[net.ssid] = net
+        self.networks[net.mac] = net

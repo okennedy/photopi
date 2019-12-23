@@ -56,8 +56,7 @@
 
   WiFiNetworkList:
     size_hint_y: 0.55
-    connected: root.active_connection.get_properties()['ssid'] if root.active_connection is not None else None
-    data: [{ **net.get_properties(), "network":net, "connected":net.get_properties()['ssid'] == self.connected } for net in root.networks]
+    data: root.networks
 
   Button:
     size_hint_y: 0.1
@@ -80,7 +79,7 @@
 
   canvas.before:
     Color:
-      rgba: 0.2, 0.8, 0.4, 0.6 if self.connected else 0
+      rgba: 1, 1, 1, 0.3
     RoundedRectangle:
       pos: self.pos[0]+2, self.pos[1]+2
       size: self.size[0]-4, self.size[1]-4
@@ -89,25 +88,7 @@
   Label:
     width: root.width
     height: root.height
-    text: root.ssid if not root.connected else "Connected: {}".format(root.ssid)
+    text: root.ssid
     bold: True
     font_size: 20
-    color: 1,1,1
-    alpha: 1
 
-#  Button:
-#    canvas.before:
-#      Color:
-#        rgba: 0.8, 0.2, 0.2, 0.9
-#      RoundedRectangle:
-#        pos: self.pos[0]+2, self.pos[1]+2
-#        size: self.size[0]-4, self.size[1]-4
-#        radius: [(5,5)]
-#
-#    width: root.width
-#    height: root.height
-#    text: "X"
-#    bold: True
-#    font_size: 32
-#    size_hint_x: root.delete_size
-#    on_press: root.do_deleteasdf()

@@ -23,10 +23,12 @@ class PhotoFrame(Widget):
 
   def toggle_controls(self, touch = None):
     self.show_controls = not self.show_controls
+    print("Controls now: {}".format(self.show_controls))
     return True;
 
   def toggle_settings(self, touch = None):
     self.show_settings = not self.show_settings
+    print("Settings now: {}".format(self.show_settings))
     return True;
 
   def hide_ui(self, event = None):

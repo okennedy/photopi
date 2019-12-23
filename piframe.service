@@ -1,0 +1,14 @@
+[Unit]
+Description=Raspberry Pi Photo Frame
+After=multi-user.target
+
+[Service]
+Type=simple
+User=pi
+ExecStart=/usr/bin/python3 /home/pi/photopi/main.py
+Environment='HOME=/home/pi/photopi/'
+Restart=on-failure
+WorkingDirectory=/home/pi/photopi/
+
+[Install]
+WantedBy=multi-user.target

@@ -17,4 +17,5 @@ class PhotoFrameApp(App):
     return photo
 
 if __name__ == '__main__':
-    PhotoFrameApp().run()
+#  fetch_files()
+  PhotoFrameApp().run()
