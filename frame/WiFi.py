@@ -51,7 +51,7 @@ class WiFiSettings(BoxLayout):
           "network" : net,
           "ssid" : net.ssid
         }
-        for net in supplicant.networks
+        for net in self.supplicant.networks
       ])
     except Exception as e:
       print("Error refreshing networks: {}".format(e))
